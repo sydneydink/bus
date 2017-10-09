@@ -7,7 +7,23 @@ a {
   color: #00B7FF;
 }
 
+margin10:{margin-top:10;}
+margin20:{margin-top:20;}
+margin30:{margin-top:30;}
+margin40:{margin-top:40;}
+margin50:{margin-top:50;}
+
 .participant-tr{
 	padding-left:10px;
 	padding-right:10px;
+}
+
+.bus-stop-form input{
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.bus-stop-table {
+	text-align: center;
 }

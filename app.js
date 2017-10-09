@@ -19,6 +19,7 @@ mongoose.connect(config.mongodb);
 require('./app/models/user');
 require('./app/models/product');
 require('./app/models/participant');
+require('./app/models/busstop');
 
 /*******************************/
 /******** Main App *************/

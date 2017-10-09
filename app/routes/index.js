@@ -27,6 +27,7 @@ router.use('/', require('./middleware.js'))
 router.use('/user', require('./users.js'));
 router.use('/product', require('./product.js'));
 router.use('/participant', require('./participant.js'));
+router.use('/busstop', require('./busstop.js'));
 
 
 router.get('/', function(req, res, next) {
