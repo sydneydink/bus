@@ -1,6 +1,6 @@
 <h1> Show {{modelName}} </h1>
 
-<form class="bus-stop-form" action="api/update/{{model._id}}" method="POST">
+<form class="bus-stop-form" action="/busstop/api/update/{{model._id}}" method="POST">
 	
 	<p> Site No </p>
 	<input value="{{model.siteNo}}" name='siteNo' >
@@ -32,6 +32,8 @@
 	<input value="{{model.remarks}}" name='remarks' >
 	<p> Image </p>
 	<input value="{{model.image}}" name='image' >
+	<p> Auth </p>
+	<input value="auth" name='auth' >
 
 	<button type="submit">Submit</button>
 

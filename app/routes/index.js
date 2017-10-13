@@ -20,8 +20,6 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-
-
 /* Call sub-routes */
 router.use('/', require('./middleware.js'))
 router.use('/user', require('./users.js'));

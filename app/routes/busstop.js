@@ -7,6 +7,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var passport = require('passport');
 var request = require('superagent');
+var config = require('../../config/config');
 /********************************/
 /********** CONFIG **************/
 /********************************/
@@ -40,8 +41,12 @@ router.post('/api/delete/:param', deleteOne); //delete one
 /* Custom Routes */
 router.get('/timing', function(req,res,next){
 
+	console.log("Bus stop code is ", req.query.BusStopCode)
 	var BusStopCode = req.query.BusStopCode	//1619
-	console.log("Bus stop code is ", BusStopCode)
+	if (BusStopCode == 'null'){
+		BusStopCode = '66339'
+	}
+	
 	request
 		//.get('http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=83139')
 		.get('http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode='+ BusStopCode)
@@ -49,21 +54,22 @@ router.get('/timing', function(req,res,next){
 		.set('Accept', 'application/json')
 		.end(function(err, data){
 		 if (err || !data.ok) {
-		   console.log('Oh no! error');
+		   console.log('Oh no! error at request');
 		 } else {
 	   		Model.findOne (
 				{busSt: BusStopCode},
 				function (err, model){
-					console.log("id is " + model.name)
+					console.log("model is ", model);
 					if(err) {
 						return next(err);
 						console.log(err);
 					}
 					if(!model){
+
 						console.log("no model");
 						res.json(data.body)
+						return;
 					}
-					console.log("model is ", model);
 					data.body.model = model
 					res.json(data.body)
 				}
@@ -119,12 +125,16 @@ function createOne(req, res){
 
 /* CRUD CALLS */
 function create (req, res, next){
-	var model = new Model(req.body);
+	//if(req.body.auth == config.auth){
+		var model = new Model(req.body);
 
-	model.save(function(err){
-		if(err){return next(err);}
-		res.send("Create success. Click back and reload")
-	});
+		model.save(function(err){
+			if(err){return next(err);}
+			res.send("Create success. Click back and reload")
+		});
+	//} else {
+	//	res.send("200 error");
+	//}
 
 }
 
@@ -146,18 +156,18 @@ function getOne (req, res, next){
 }
 
 function update (req, res, next){
-	Model.findOneAndUpdate(
-		{_id: req.model._id},
-		{$set:{
-			//todo2 - update the fields to be same as parameter
-			name: req.body.name,
-			slug: req.body.slug,
-		}},
-		function (err, updatedModel){
-			if(err) return next(err);
-			res.send(updatedModel);
-		}
-	)
+	//if(req.body.auth==config.auth){
+		Model.findOneAndUpdate(
+			{_id: req.model._id},
+			req.body,
+			function (err, updatedModel){
+				if(err) return next(err);
+				res.send("update successful");
+			}
+		)
+	//} else {
+	//	res.send("200 error");
+	//}
 }
 
 function deleteOne (req, res){
