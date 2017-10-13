@@ -171,8 +171,12 @@ function update (req, res, next){
 }
 
 function deleteOne (req, res){
-	Model.find({_id: req.model._id}).remove().exec();
-	res.send('deleted');
+	if(req.body.auth==config.auth){
+		Model.find({_id: req.model._id}).remove().exec();
+		res.send('deleted');
+	} else {
+		res.send("200 error");
+	}
 }
 
 module.exports = router;

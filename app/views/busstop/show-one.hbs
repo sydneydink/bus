@@ -38,3 +38,9 @@
 	<button type="submit">Submit</button>
 
 </form>
+
+<h2> Delete this entry </h2>
+<form class="bus-stop-form" action="/busstop/api/delete/{{model._id}}" method="POST">
+	<input value="auth" name='auth' >
+	<button type="submit">Delete</button>
+</form>
