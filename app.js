@@ -15,10 +15,7 @@ var cors = require('cors')
 /******** DB & Models **********/
 /*******************************/
 
-mongoose.connect(config.mongodb);
-require('./app/models/user');
-require('./app/models/product');
-require('./app/models/participant');
+mongoose.connect('mongodb://localhost/bus-arrival');
 require('./app/models/busstop');
 
 /*******************************/
@@ -42,13 +39,10 @@ app.use(expressSession({
   resave: true, 
   saveUninitialized: true
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+
 app.use(cors());
 //app.use(allowCrossDomain);
 app.use(flash());
-var initPassport = require('./passport/init');
-initPassport(passport);
 
 
 // view engine setup

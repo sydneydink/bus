@@ -3,34 +3,20 @@
 <table class="bus-stop-table" border="1">
 	<tr>
 		<th>Site No </th>
-		<th>Final Face</th>
-		<th>Bus No</th>
-		<th>Description</th>
-		<th>Facing</th>
 		<th>Bus St</th>
-		<th>Panel ID</th>
-		<th>MRT</th>
 		<th>Chosen POI</th>
-		<th>Distance From POI</th>
+		<th>Steps To Walk</th>
 		<th>Mins To Walk</th>
-		<th>Image</th>
 		<th>Edit</th>
 	</tr>
 	
 	{{#each models}}
 		<tr>
 			<td>{{this.siteNo}}</td>
-			<td>{{this.finalface}}</td>
-			<td>{{this.bsNo}}</td>
-			<td>{{this.description}}</td>
-			<td>{{this.facing}}</td>
 			<td>{{this.busSt}}</td>
-			<td>{{this.panelId}}</td>
-			<td>{{this.mrt}}</td>
 			<td>{{this.chosenPoi}}</td>
-			<td>{{this.distanceFromPoi}}</td>
+			<td>{{this.stepsToWalk}}</td>
 			<td>{{this.minsToWalk}}</td>
-			<td>{{this.image}}</td>
 			<td><a href="/busstop/id/{{this._id}}">link</td>
 		</tr>
 	{{/each}}

@@ -13,6 +13,7 @@ var busstopSchema = new mongoose.Schema({
   chosenPoi: String, 
   distanceFromPoi: String, 
   minsToWalk: String, 
+  stepsToWalk: String,
   noOfBusStop: String, 
   remarks: String, 
   image: String, 
