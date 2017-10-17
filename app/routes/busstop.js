@@ -161,7 +161,7 @@ function getOne (req, res, next){
 }
 
 function update (req, res, next){
-	//if(req.body.auth==config.auth){
+	if(req.body.auth==config.auth){
 		Model.findOneAndUpdate(
 			{_id: req.model._id},
 			req.body,
@@ -170,9 +170,9 @@ function update (req, res, next){
 				res.send("update successful");
 			}
 		)
-	//} else {
-	//	res.send("200 error");
-	//}
+	} else {
+		res.send("200 error");
+	}
 }
 
 function deleteOne (req, res){
