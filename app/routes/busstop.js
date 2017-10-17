@@ -71,6 +71,11 @@ router.get('/timing', function(req,res,next){
 						return;
 					}
 					data.body.model = model
+					data.body.Services.sort((x, y)=>{
+						var time1 = new Date(x.NextBus.EstimatedArrival)
+						var time2 = new Date(y.NextBus.EstimatedArrival)
+						return (time2 - time1)
+					})
 					res.json(data.body)
 				}
 			)

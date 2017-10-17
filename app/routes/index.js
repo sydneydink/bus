@@ -13,6 +13,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/data', function(req,res){
+	res.json([
+		{"name": "test1", "email": "test2"}, 
+		{"name": "test1", "email": "test2"}
+	])
+})
 
 
 // Catch all for 404 error.
